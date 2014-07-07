@@ -12,15 +12,7 @@
  */
 package org.hornetq.tests.integration.proton;
 
-import javax.jms.Connection;
-import javax.jms.ExceptionListener;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.QueueBrowser;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Random;
@@ -35,6 +27,7 @@ import org.hornetq.core.server.Queue;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -120,6 +113,7 @@ public class ProtonTest extends ServiceTestBase
     * @throws Throwable
     */
    @Test
+   @Ignore
    public void testBrowser() throws Throwable
    {
       // As this test was hunging, we added a protection here to fail it instead.
@@ -383,6 +377,34 @@ public class ProtonTest extends ServiceTestBase
       assertEquals(m.getByteProperty("byte"), (byte) 10);
       connection.close();
    }
+
+    @Test
+    public void testMapMessage() throws Exception
+    {
+        long time = System.currentTimeMillis();
+        QueueImpl queue = new QueueImpl(address);
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        MessageProducer p = session.createProducer(queue);
+
+        MapMessage message = session.createMapMessage();
+        message.setBoolean("TEST", true);
+        p.send(message);
+
+        MessageConsumer consumer = session.createConsumer(queue);
+        Message receivedMsg = consumer.receive(5000);
+
+        System.out.println("Received Message Class: " + receivedMsg.getClass().getSimpleName());
+
+        assertNotNull(receivedMsg);
+        assertTrue(receivedMsg instanceof MapMessage);
+        Boolean property = ((MapMessage) receivedMsg).getBoolean("TEST");
+        assertTrue(property);
+
+        consumer.close();
+        connection.close();
+        long taken = (System.currentTimeMillis() - time) / 1000;
+        System.out.println("taken = " + taken);
+    }
 
    private javax.jms.Connection createConnection() throws JMSException
    {

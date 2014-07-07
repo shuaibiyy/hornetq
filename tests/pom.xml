@@ -16,6 +16,14 @@
       <hornetq.basedir>${project.basedir}/..</hornetq.basedir>
    </properties>
 
+   <dependencies>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-bootstrap</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+   </dependencies>
+
    <build>
       <plugins>
          <plugin>

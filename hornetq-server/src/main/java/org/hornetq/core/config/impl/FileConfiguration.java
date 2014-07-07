@@ -32,7 +32,7 @@ public final class FileConfiguration extends ConfigurationImpl
    private static final long serialVersionUID = -4766689627675039596L;
    // Constants ------------------------------------------------------------------------
 
-   private static final String DEFAULT_CONFIGURATION_URL = "hornetq-configuration.xml";
+   private static final String DEFAULT_CONFIGURATION_URL = "file:///Users/shuaib/workspace/KG-12296/hornetq-2.4.0.Final/config/stand-alone/non-clustered/hornetq-configuration.xml";
 
    // For a bridge confirmations must be activated or send acknowledgments won't return
    public static final int DEFAULT_CONFIRMATION_WINDOW_SIZE = 1024 * 1024;
@@ -44,7 +44,8 @@ public final class FileConfiguration extends ConfigurationImpl
 
    public FileConfiguration(String configurationUrl)
    {
-      this.configurationUrl = configurationUrl;
+//      this.configurationUrl = configurationUrl;
+       this.configurationUrl = DEFAULT_CONFIGURATION_URL;
    }
 
    private String configurationUrl = DEFAULT_CONFIGURATION_URL;

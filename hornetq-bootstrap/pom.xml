@@ -29,6 +29,46 @@
          <groupId>org.jboss.microcontainer</groupId>
          <artifactId>jboss-kernel</artifactId>
       </dependency>
+       <dependency>
+           <groupId>org.jboss.logmanager</groupId>
+           <artifactId>jboss-logmanager</artifactId>
+           <scope>test</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.jboss.logmanager</groupId>
+           <artifactId>jboss-logmanager</artifactId>
+           <scope>test</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-commons</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-journal</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-server</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-jms-server</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-amqp-protocol</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hornetq</groupId>
+           <artifactId>hornetq-core-client</artifactId>
+           <version>${project.version}</version>
+       </dependency>
    </dependencies>
 
 </project>
